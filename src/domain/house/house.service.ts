@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { House } from '../../infra/database/entity/House';
+import { HouseRepository } from './../../infra/repository/house/house.repository';
 import { CreateHouseDto } from './dto/create-house.dto';
 import { UpdateHouseDto } from './dto/update-house.dto';
-import { IHouseRepository } from './interfaces/house.repository.interface';
 
 @Injectable()
 export class HouseService {
-  constructor(private readonly houseRepository: IHouseRepository) {}
+  constructor(private readonly houseRepository: HouseRepository) {}
 
   async createHouse(createHouseDto: CreateHouseDto): Promise<House> {
     return this.houseRepository.createHouse(createHouseDto);
