@@ -1,4 +1,4 @@
-import { Notification } from '../../../infra/database/entity/Notification';
+import { Notification } from '../../../infra/database/entity/notification.entity';
 import { CreateNotificationDto } from '../dto/create-notification.dto';
 import { UpdateNotificationDto } from '../dto/update-notification.dto';
 

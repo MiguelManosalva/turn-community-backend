@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Notification } from '../../infra/database/entity/Notification';
+import { Notification } from '../../infra/database/entity/notification.entity';
 import { CreateNotificationDto } from './dto/create-notification.dto';
 import { UpdateNotificationDto } from './dto/update-notification.dto';
 import { INotificationRepository } from './interfaces/notification.repository.interface';

@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Shift } from './Shift';
-import { User } from './User';
+import { Shift } from './shift.entity';
+import { User } from './user.entity';
 
 @Entity('Casas')
 export class House {

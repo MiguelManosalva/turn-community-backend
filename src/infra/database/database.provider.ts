@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm';
-import { House } from './entity/House';
-import { Notification } from './entity/Notification';
-import { Shift } from './entity/Shift';
-import { User } from './entity/User';
+import { House } from './entity/house.entity';
+import { Notification } from './entity/notification.entity';
+import { Shift } from './entity/shift.entity';
+import { User } from './entity/user.entity';
 
 export const databaseProviders = [
   {
@@ -11,7 +11,7 @@ export const databaseProviders = [
       const dataSource = new DataSource({
         type: 'mysql',
         entities: [House, User, Shift, Notification],
-        synchronize: true, // Nota: usar con precaución en producción
+        synchronize: true,
       });
 
       return dataSource.initialize();

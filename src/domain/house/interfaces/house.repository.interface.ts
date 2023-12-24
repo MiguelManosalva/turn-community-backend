@@ -1,4 +1,4 @@
-import { House } from '../../../infra/database/entity/House';
+import { House } from '../../../infra/database/entity/house.entity';
 import { CreateHouseDto } from '../dto/create-house.dto';
 import { UpdateHouseDto } from '../dto/update-house.dto';
 

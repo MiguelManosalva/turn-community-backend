@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import { HouseController } from './application/house/house.controller';
 import databaseConfig from './config/database.config';
 import { HouseService } from './domain/house/house.service';
-import { House } from './infra/database/entity/House';
+import { House } from './infra/database/entity/house.entity';
 import { HouseRepository } from './infra/repository/house/house.repository';
 @Module({
   imports: [

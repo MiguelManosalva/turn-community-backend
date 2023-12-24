@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Shift } from '../../infra/database/entity/Shift';
+import { Shift } from '../../infra/database/entity/shift.entity';
 import { CreateShiftDto } from './dto/create-shift.dto';
 import { UpdateShiftDto } from './dto/update-shift.dto';
 import { IShiftRepository } from './interfaces/shift.repository.interface';

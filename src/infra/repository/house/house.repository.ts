@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { House } from '../../database/entity/House';
+import { House } from '../../database/entity/house.entity';
 import { CreateHouseDto } from './../../../domain/house/dto/create-house.dto';
 import { UpdateHouseDto } from './../../../domain/house/dto/update-house.dto';
 import { IHouseRepository } from './../../../domain/house/interfaces/house.repository.interface';

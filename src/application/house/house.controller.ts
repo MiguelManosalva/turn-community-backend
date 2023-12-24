@@ -1,14 +1,14 @@
 import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    NotFoundException,
-    Param,
-    Patch,
-    Post,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  NotFoundException,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
-import { House } from '../../infra/database/entity/House';
+import { House } from '../../infra/database/entity/house.entity';
 import { CreateHouseDto } from './../../domain/house/dto/create-house.dto';
 import { UpdateHouseDto } from './../../domain/house/dto/update-house.dto';
 import { HouseService } from './../../domain/house/house.service';
