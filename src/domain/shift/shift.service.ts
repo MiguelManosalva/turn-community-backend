@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Shift } from '../../infra/database/entity/shift.entity';
+import { ShiftRepository } from './../../infra/repository/shift/shift.repository';
 import { CreateShiftDto } from './dto/create-shift.dto';
 import { UpdateShiftDto } from './dto/update-shift.dto';
-import { IShiftRepository } from './interfaces/shift.repository.interface';
 
 @Injectable()
 export class ShiftService {
-  constructor(private readonly shiftRepository: IShiftRepository) {}
+  constructor(private readonly shiftRepository: ShiftRepository) {}
 
   async createShift(createShiftDto: CreateShiftDto): Promise<Shift> {
     return this.shiftRepository.createShift(createShiftDto);

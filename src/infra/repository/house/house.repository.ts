@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { House } from '../../database/entity/house.entity';
@@ -24,7 +24,7 @@ export class HouseRepository implements IHouseRepository {
   ): Promise<House> {
     const house = await this.houseRepository.findOne({ where: { id } });
     if (!house) {
-      // Lanzar alguna excepción o manejar el caso de no encontrado
+      throw new NotFoundException(`House with ID ${id} not found`);
     }
 
     await this.houseRepository.update(id, updateHouseDto);
