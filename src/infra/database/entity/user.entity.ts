@@ -21,6 +21,6 @@ export class User {
   @Column({ length: 20 })
   telefonoMovil: string;
 
-  @ManyToOne(() => House, (house) => house.usuarios)
+  @ManyToOne(() => House, house => house.usuarios)
   casa: House;
 }
