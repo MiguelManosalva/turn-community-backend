@@ -19,7 +19,7 @@ export class User {
   rol: string;
 
   @Column({ length: 20 })
-  telefonoMovil: string;
+  telefono: string;
 
   @ManyToOne(() => House, house => house.usuarios)
   casa: House;

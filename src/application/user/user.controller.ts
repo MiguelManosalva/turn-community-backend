@@ -1,20 +1,11 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  NotFoundException,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { User } from '../../infra/database/entity/user.entity';
 import { CreateUserDto } from './../../domain/user/dto/create-user.dto';
 import { UpdateUserDto } from './../../domain/user/dto/update-user.dto';
 import { UserService } from './../../domain/user/user.service';
 
-@Controller('user')
+@Controller('api/user')
 @ApiTags('Usuarios')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -41,10 +32,7 @@ export class UserController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Actualizar un usuario' })
-  async updateUser(
-    @Param('id') id: number,
-    @Body() updateUserDto: UpdateUserDto,
-  ): Promise<User> {
+  async updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto): Promise<User> {
     return this.userService.updateUser(id, updateUserDto);
   }
 

@@ -5,16 +5,17 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Configuración de CORS
+  app.enableCors();
+
   // Configuración de Swagger
   const config = new DocumentBuilder()
     .setTitle('Turn Management API Documentation')
-    .setDescription(
-      'Esta es la documentación de la API de Turn Management para el proyecto de Integración de Sistemas',
-    )
+    .setDescription('Esta es la documentación de la API de Turn Management para el proyecto de Integración de Sistemas')
     .setVersion('1.0.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api/doc', app, document);
 
   await app.listen(3047);
 }

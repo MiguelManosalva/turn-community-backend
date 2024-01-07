@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto'; // Deberás crear este DTO
 import { LocalAuthGuard } from './local-auth.guard';
 
-@Controller('auth')
+@Controller('api/auth')
 @ApiTags('Autenticación')
 export class AuthController {
   constructor(private authService: AuthService) {}
@@ -15,7 +15,9 @@ export class AuthController {
   @ApiResponse({ status: 201, description: 'Usuario registrado con éxito.' })
   @ApiResponse({ status: 400, description: 'Datos inválidos.' })
   async register(@Body() createUserDto: CreateUserDto) {
-    return await this.authService.register(createUserDto);
+    const userResponse = await this.authService.register(createUserDto);
+    delete userResponse.contrasena;
+    return userResponse;
   }
 
   @HttpCode(HttpStatus.OK)

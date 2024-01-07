@@ -23,18 +23,11 @@ export class CreateUserDto {
   contrasena: string;
 
   @ApiProperty({
-    description: 'Rol del usuario en el sistema',
-    example: 'vecino',
-    enum: ['vecino', 'administrador'],
-  })
-  rol: 'vecino' | 'administrador';
-
-  @ApiProperty({
     description: 'Número de teléfono móvil del usuario',
     example: '+34123456789',
     type: String,
   })
-  telefonoMovil: string;
+  telefono: string;
 
   @ApiProperty({
     description: 'Identificador de la casa asociada al usuario',

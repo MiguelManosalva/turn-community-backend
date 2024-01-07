@@ -6,7 +6,7 @@ import { CreateHouseDto } from './../../domain/house/dto/create-house.dto';
 import { UpdateHouseDto } from './../../domain/house/dto/update-house.dto';
 import { HouseService } from './../../domain/house/house.service';
 
-@Controller('house')
+@Controller('api/house')
 @ApiTags('Casas')
 export class HouseController {
   constructor(private readonly houseService: HouseService) {}

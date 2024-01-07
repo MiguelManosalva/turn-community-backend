@@ -1,20 +1,11 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  NotFoundException,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Shift } from '../../infra/database/entity/shift.entity';
 import { CreateShiftDto } from './../../domain/shift/dto/create-shift.dto';
 import { UpdateShiftDto } from './../../domain/shift/dto/update-shift.dto';
 import { ShiftService } from './../../domain/shift/shift.service';
 
-@Controller('shift')
+@Controller('api/shift')
 @ApiTags('Turnos')
 export class ShiftController {
   constructor(private readonly shiftService: ShiftService) {}
@@ -41,10 +32,7 @@ export class ShiftController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Actualizar un turno' })
-  async updateShift(
-    @Param('id') id: number,
-    @Body() updateShiftDto: UpdateShiftDto,
-  ): Promise<Shift> {
+  async updateShift(@Param('id') id: number, @Body() updateShiftDto: UpdateShiftDto): Promise<Shift> {
     return this.shiftService.updateShift(id, updateShiftDto);
   }
 
