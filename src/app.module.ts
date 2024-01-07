@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { HouseController } from './application/house/house.controller';
 import { NotificationController } from './application/notification/notification.controller';
 import { ShiftController } from './application/shift/shift.controller';
+import { StadisticsController } from './application/stadistics/stadistics.controller';
 import { UserController } from './application/user/user.controller';
 import { UserModule } from './application/user/user.module';
 import { AuthModule } from './auth/auth.module';
@@ -35,7 +36,7 @@ import { ShiftRepository } from './infra/repository/shift/shift.repository';
     }),
     TypeOrmModule.forFeature([House, User, Shift, Notification]),
   ],
-  controllers: [HouseController, UserController, ShiftController, NotificationController],
+  controllers: [HouseController, UserController, ShiftController, NotificationController, StadisticsController],
   providers: [
     AppService,
     HouseService,

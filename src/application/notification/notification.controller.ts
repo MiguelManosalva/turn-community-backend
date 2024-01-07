@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Notification } from '../../infra/database/entity/notification.entity';
 import { CreateNotificationDto } from './../../domain/notification/dto/create-notification.dto';
 import { UpdateNotificationDto } from './../../domain/notification/dto/update-notification.dto';
@@ -11,12 +12,16 @@ export class NotificationController {
   constructor(private readonly notificationService: NotificationService) {}
 
   @Post()
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth('JWT-Auth')
   @ApiOperation({ summary: 'Crear una notificación' })
   async createNotification(@Body() createNotificationDto: CreateNotificationDto): Promise<Notification> {
     return this.notificationService.createNotification(createNotificationDto);
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth('JWT-Auth')
   @ApiOperation({ summary: 'Obtener una notificación' })
   async getNotification(@Param('id') id: number): Promise<Notification> {
     const notification = await this.notificationService.findOneNotification(id);
@@ -25,12 +30,16 @@ export class NotificationController {
   }
 
   @Get()
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth('JWT-Auth')
   @ApiOperation({ summary: 'Obtener todas las notificaciones' })
   async getAllNotifications(): Promise<Notification[]> {
     return this.notificationService.findAllNotifications();
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth('JWT-Auth')
   @ApiOperation({ summary: 'Actualizar una notificación' })
   async updateNotification(
     @Param('id') id: number,
@@ -40,6 +49,8 @@ export class NotificationController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth('JWT-Auth')
   @ApiOperation({ summary: 'Eliminar una notificación' })
   async removeNotification(@Param('id') id: number): Promise<void> {
     await this.notificationService.deleteNotification(id);

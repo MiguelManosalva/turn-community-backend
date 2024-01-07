@@ -23,8 +23,10 @@ export class AuthService {
 
   async login(user: User) {
     const payload = { email: user.correoElectronico, sub: user.id };
+    delete user.contrasena;
     return {
-      access_token: this.jwtService.sign(payload),
+      ...user,
+      accessToken: this.jwtService.sign(payload),
     };
   }
 
