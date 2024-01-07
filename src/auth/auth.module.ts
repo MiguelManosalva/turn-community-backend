@@ -15,7 +15,6 @@ import { LocalStrategy } from './local.strategy';
     JwtModule.registerAsync({
       useFactory: () => ({
         secret: jwtConfig().secret,
-        signOptions: jwtConfig().signOptions,
       }),
     }),
   ],

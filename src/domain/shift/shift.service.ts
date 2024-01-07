@@ -12,10 +12,7 @@ export class ShiftService {
     return this.shiftRepository.createShift(createShiftDto);
   }
 
-  async updateShift(
-    id: number,
-    updateShiftDto: UpdateShiftDto,
-  ): Promise<Shift> {
+  async updateShift(id: number, updateShiftDto: UpdateShiftDto): Promise<Shift> {
     return this.shiftRepository.updateShift(id, updateShiftDto);
   }
 
@@ -28,6 +25,6 @@ export class ShiftService {
   }
 
   async findAllShifts(): Promise<Shift[]> {
-    return this.shiftRepository.findAllShifts();
+    return await this.shiftRepository.findAllShifts();
   }
 }

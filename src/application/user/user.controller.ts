@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, U
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { User } from '../../infra/database/entity/user.entity';
-import { CreateUserDto } from './../../domain/user/dto/create-user.dto';
+import { CreateUserAdminDto } from './../../domain/user/dto/create-user-admin.dto';
 import { UpdateUserDto } from './../../domain/user/dto/update-user.dto';
 import { UserService } from './../../domain/user/user.service';
 
@@ -15,8 +15,8 @@ export class UserController {
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth('JWT-Auth')
   @ApiOperation({ summary: 'Crear un usuario' })
-  async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
-    return this.userService.createUser(createUserDto);
+  async createUser(@Body() createUser: CreateUserAdminDto): Promise<User> {
+    return this.userService.createUserAdmin(createUser);
   }
 
   @Get(':id')

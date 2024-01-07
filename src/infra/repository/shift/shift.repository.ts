@@ -18,10 +18,7 @@ export class ShiftRepository implements IShiftRepository {
     return this.shiftRepository.save(newShift);
   }
 
-  async updateShift(
-    id: number,
-    updateShiftDto: UpdateShiftDto,
-  ): Promise<Shift> {
+  async updateShift(id: number, updateShiftDto: UpdateShiftDto): Promise<Shift> {
     const shift = await this.shiftRepository.findOne({ where: { id } });
     if (!shift) {
       throw new NotFoundException(`Shift with ID ${id} not found`);
@@ -40,6 +37,12 @@ export class ShiftRepository implements IShiftRepository {
   }
 
   async findAllShifts(): Promise<Shift[]> {
-    return this.shiftRepository.find();
+    const shifts = await this.shiftRepository.find();
+
+    if (shifts.length === 0) {
+      return [];
+    }
+
+    return shifts;
   }
 }

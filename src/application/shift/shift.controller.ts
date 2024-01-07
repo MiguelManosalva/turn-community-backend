@@ -20,6 +20,8 @@ export class ShiftController {
   }
 
   @Get(':id')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth('JWT-Auth')
   @ApiOperation({ summary: 'Obtener un turno' })
   async getShift(@Param('id') id: number): Promise<Shift> {
     const shift = await this.shiftService.findOneShift(id);
@@ -28,6 +30,8 @@ export class ShiftController {
   }
 
   @Get()
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth('JWT-Auth')
   @ApiOperation({ summary: 'Obtener todos los turnos' })
   async getAllShifts(): Promise<Shift[]> {
     return this.shiftService.findAllShifts();
