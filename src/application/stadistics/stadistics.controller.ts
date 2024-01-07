@@ -4,7 +4,9 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { HouseService } from '../../domain/house/house.service';
 import { ShiftService } from './../../domain/shift/shift.service';
 import { StadisticDto } from './../../domain/stadistics/dto/stadistics.dto';
+import { WeatherDto } from './../../domain/stadistics/dto/weather.dto';
 import { UserService } from './../../domain/user/user.service';
+import { WeatherProvider } from './../../infra/provider/weather.provider';
 
 @Controller('api/stadistics')
 @ApiTags('Estadisticas')
@@ -13,6 +15,7 @@ export class StadisticsController {
     private readonly houseService: HouseService,
     private readonly userService: UserService,
     private readonly shiftService: ShiftService,
+    private readonly weatherProvider: WeatherProvider,
   ) {}
 
   @Get()
@@ -31,5 +34,13 @@ export class StadisticsController {
     };
 
     return response;
+  }
+
+  @Get('/weather')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth('JWT-Auth')
+  @ApiOperation({ summary: 'Obtiene el tiempo actual de la comuna del vecindario' })
+  async getWeather(): Promise<WeatherDto> {
+    return this.weatherProvider.getWeather();
   }
 }

@@ -1,7 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UpdateUserDto } from '../../../domain/user/dto/update-user.dto';
 import { IUserRepository } from '../../../domain/user/interfaces/user.repository.interface';
 import { User } from '../../database/entity/user.entity';
 
@@ -17,13 +16,8 @@ export class UserRepository implements IUserRepository {
     return this.userRepository.save(newUser);
   }
 
-  async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-    const user = await this.userRepository.findOne({ where: { id } });
-    if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found`);
-    }
-
-    await this.userRepository.update(id, updateUserDto);
+  async updateUser(id: number, user: User): Promise<User> {
+    await this.userRepository.update(id, user);
     return this.userRepository.findOne({ where: { id } });
   }
 

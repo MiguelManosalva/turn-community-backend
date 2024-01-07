@@ -46,7 +46,16 @@ export class UserService {
   }
 
   async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-    return this.userRepository.updateUser(id, updateUserDto);
+    const house = await this.houseRepository.findOneHouse(updateUserDto.casaId);
+    const user = Builder<User>()
+      .nombre(updateUserDto.nombre)
+      .correoElectronico(updateUserDto.correoElectronico)
+      .contrasena(updateUserDto.contrasena)
+      .telefono(updateUserDto.telefono)
+      .rol(updateUserDto.rol)
+      .casa(house)
+      .build();
+    return this.userRepository.updateUser(id, user);
   }
 
   async deleteUser(id: number): Promise<void> {

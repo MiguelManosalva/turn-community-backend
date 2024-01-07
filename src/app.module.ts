@@ -17,6 +17,7 @@ import { House } from './infra/database/entity/house.entity';
 import { Notification } from './infra/database/entity/notification.entity';
 import { Shift } from './infra/database/entity/shift.entity';
 import { User } from './infra/database/entity/user.entity';
+import { WeatherProvider } from './infra/provider/weather.provider';
 import { NotificationRepository } from './infra/repository/notification/notification.repository';
 
 @Module({
@@ -37,6 +38,6 @@ import { NotificationRepository } from './infra/repository/notification/notifica
     TypeOrmModule.forFeature([House, User, Shift, Notification]),
   ],
   controllers: [HouseController, UserController, ShiftController, NotificationController, StadisticsController],
-  providers: [AppService, NotificationService, NotificationRepository],
+  providers: [AppService, NotificationService, NotificationRepository, WeatherProvider],
 })
 export class AppModule {}
