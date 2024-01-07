@@ -1,6 +1,7 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { Builder } from 'builder-pattern';
 import { User } from '../../infra/database/entity/user.entity';
+import { HouseRepository } from './../../infra/repository/house/house.repository';
 import { UserRepository } from './../../infra/repository/user/user.repository';
 import { CreateUserAdminDto } from './dto/create-user-admin.dto';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -8,7 +9,10 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly houseRepository: HouseRepository,
+  ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     const existingUser = await this.userRepository.findOneUserByEmail(createUserDto.correoElectronico);
@@ -29,12 +33,14 @@ export class UserService {
   }
 
   async createUserAdmin(createUserDto: CreateUserAdminDto): Promise<User> {
+    const house = await this.houseRepository.findOneHouse(createUserDto.casaId);
     const user = Builder<User>()
       .nombre(createUserDto.nombre)
       .correoElectronico(createUserDto.correoElectronico)
       .contrasena(createUserDto.contrasena)
       .telefono(createUserDto.telefono)
       .rol(createUserDto.rol)
+      .casa(house)
       .build();
     return this.userRepository.createUser(user);
   }
